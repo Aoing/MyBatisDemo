@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="jdbc_mysql.properties"/>
+    <!--配置运行环境-->
+    <environments default="onlineEM">
+        <!--运行环境1：上线运行-->
+        <environment id="onlineEM">
+            <!--事务管理器,JDBC:使用JDBC默认的事务管理器-->
+            <transactionManager type="JDBC"></transactionManager>
+
+            <!--数据源采用的是数据库连接池技术，一般不用这个，spring中常用的时c3p0-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+
+        <!--运行环境2：测试运行-->
+        <environment id="testEM">
+            <!--事务管理器,JDBC:使用JDBC默认的事务管理器-->
+            <transactionManager type="JDBC"></transactionManager>
+
+            <!--数据源采用的是数据库连接池技术，一般不用这个，spring中常用的时c3p0-->
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://3306/test"/><!--如果端口为3306，则ip+端口可以省略："jdbc:mysql:///test"-->
+                <property name="username" value="root"/>
+                <property name="password" value="123"/>
+            </dataSource>
+        </environment>
+
+    </environments>
+
+    <!--注册映射文件-->
+    <mappers>
+        <mapper resource="mapper.xml"></mapper>
+    </mappers>
+
+</configuration>
