@@ -1,0 +1,2 @@
+# MyDemo
+IDEA环境下使用Maven进行MyBatis环境搭建的测试样例
